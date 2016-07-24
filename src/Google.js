@@ -3,22 +3,19 @@ import {BaseTileLayer} from 'react-leaflet';
 import {Google} from './leaflet.google';
 
 
-
-
 export default class GoogleLayer extends BaseTileLayer {
   static propTypes = {
-    type: PropTypes.string
+    type: PropTypes.string,
+    googlekey: PropTypes.string.isRequired
   };
 
 
 
   componentWillMount() {
     super.componentWillMount();
-      const {map: _map, layerContainer: _lc, type, ...props} = this.props;
-      this.leafletElement = new L.Google(type, props); 
+    const {map: _map, layerContainer: _lc, googlekey, type, ...props} = this.props;
+    this.leafletElement = new L.Google(googlekey, type, props);
   }
- 
-componentDidUpdate(prevProps) {
-  this.setStyleIfChanged(prevProps, this.props);
-}
+
+
 }

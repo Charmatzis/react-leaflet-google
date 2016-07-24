@@ -4,7 +4,7 @@
 
 /* global google: true */
 var GoogleMapsLoader = require('google-maps');
-GoogleMapsLoader.KEY = 'YOUR-GOOGLE-KEY';
+
 GoogleMapsLoader.VERSION = '3.14';
 
 
@@ -29,15 +29,16 @@ L.Google = L.Class.extend({
 	},
 
 	// Possible types: SATELLITE, ROADMAP, HYBRID, TERRAIN
-	initialize: function (type, options) {
+	initialize: function (goolekey, type, options) {
 		L.Util.setOptions(this, options);
 		var self = this;
+		GoogleMapsLoader.KEY = goolekey;
 		GoogleMapsLoader.onLoad(function () {
 			self._ready = true;
 		});
 		GoogleMapsLoader.load(function (_google) {
 			google = _google;
-			console.log('I just loaded google maps api');
+			console.log('I just loaded google maps api'); 
 
 			self._initMapObject();
 			self._update();
