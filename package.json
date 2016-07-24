@@ -32,7 +32,6 @@
   },
   "homepage": "https://github.com/Charmatzis/react-leaflet-google#readme",
   "peerDependencies": {
-    "jquery": "*",
     "leaflet": "^0.7.7",
     "react-leaflet": "^0.11.5",
     "react": "^15.0.2"
@@ -48,7 +47,6 @@
     "eslint": "^1.10.3",
     "eslint-plugin-react": "^3.16.1",
     "google-maps": "^3.2.1",
-    "jquery": "*",
     "leaflet": "^0.7.7",
     "react": "^15.0.2",
     "react-dom": "^15.0.2",
