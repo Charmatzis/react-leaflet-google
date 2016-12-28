@@ -107,13 +107,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	  function GoogleLayer() {
 	    _classCallCheck(this, GoogleLayer);
 
-	    return _possibleConstructorReturn(this, (GoogleLayer.__proto__ || Object.getPrototypeOf(GoogleLayer)).apply(this, arguments));
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(GoogleLayer).apply(this, arguments));
 	  }
 
 	  _createClass(GoogleLayer, [{
 	    key: 'componentWillMount',
 	    value: function componentWillMount() {
-	      _get(GoogleLayer.prototype.__proto__ || Object.getPrototypeOf(GoogleLayer.prototype), 'componentWillMount', this).call(this);
+	      _get(Object.getPrototypeOf(GoogleLayer.prototype), 'componentWillMount', this).call(this);
 	      var _props = this.props;
 	      var _map = _props.map;
 	      var _lc = _props.layerContainer;
