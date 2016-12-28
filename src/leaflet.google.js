@@ -29,10 +29,16 @@ L.Google = L.Class.extend({
 	},
 
 	// Possible types: SATELLITE, ROADMAP, HYBRID, TERRAIN
-	initialize: function (goolekey, type, options) {
+	initialize: function (goolekey, type, asclientid, options) {
 		L.Util.setOptions(this, options);
 		var self = this;
-		GoogleMapsLoader.KEY = goolekey;
+
+		if (asclientid) {
+			GoogleMapsLoader.CLIENT = goolekey;
+		} else {
+			GoogleMapsLoader.KEY = goolekey;
+		}
+
 		GoogleMapsLoader.onLoad(function () {
 			self._ready = true;
 		});
