@@ -107,22 +107,23 @@ return /******/ (function(modules) { // webpackBootstrap
 	  function GoogleLayer() {
 	    _classCallCheck(this, GoogleLayer);
 
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(GoogleLayer).apply(this, arguments));
+	    return _possibleConstructorReturn(this, (GoogleLayer.__proto__ || Object.getPrototypeOf(GoogleLayer)).apply(this, arguments));
 	  }
 
 	  _createClass(GoogleLayer, [{
 	    key: 'componentWillMount',
 	    value: function componentWillMount() {
-	      _get(Object.getPrototypeOf(GoogleLayer.prototype), 'componentWillMount', this).call(this);
+	      _get(GoogleLayer.prototype.__proto__ || Object.getPrototypeOf(GoogleLayer.prototype), 'componentWillMount', this).call(this);
 	      var _props = this.props;
 	      var _map = _props.map;
 	      var _lc = _props.layerContainer;
 	      var googlekey = _props.googlekey;
 	      var type = _props.type;
+	      var asclientid = _props.asclientid;
 
-	      var props = _objectWithoutProperties(_props, ['map', 'layerContainer', 'googlekey', 'type']);
+	      var props = _objectWithoutProperties(_props, ['map', 'layerContainer', 'googlekey', 'type', 'asclientid']);
 
-	      this.leafletElement = new L.Google(googlekey, type, props);
+	      this.leafletElement = new L.Google(googlekey, type, asclientid, props);
 	    }
 	  }]);
 
@@ -131,7 +132,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	GoogleLayer.propTypes = {
 	  type: _react.PropTypes.string,
-	  googlekey: _react.PropTypes.string.isRequired
+	  googlekey: _react.PropTypes.string.isRequired,
+	  asclientid: _react.PropTypes.bool
 	};
 	exports.default = GoogleLayer;
 
@@ -182,10 +184,16 @@ return /******/ (function(modules) { // webpackBootstrap
 		},
 
 		// Possible types: SATELLITE, ROADMAP, HYBRID, TERRAIN
-		initialize: function initialize(goolekey, type, options) {
+		initialize: function initialize(goolekey, type, asclientid, options) {
 			L.Util.setOptions(this, options);
 			var self = this;
-			GoogleMapsLoader.KEY = goolekey;
+
+			if (asclientid) {
+				GoogleMapsLoader.CLIENT = goolekey;
+			} else {
+				GoogleMapsLoader.KEY = goolekey;
+			}
+
 			GoogleMapsLoader.onLoad(function () {
 				self._ready = true;
 			});
