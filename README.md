@@ -5,6 +5,8 @@ The google maps layer is using the plugin from [Leaflet.GridLayer.GoogleMutant](
 
 Also it uses [google-maps](https://www.npmjs.com/package/google-maps), a wrapper for asynchronously download Google Maps API in the browser.
 
+![Example](images/example.gif)
+
 # supported versions
 - "react-leaflet": "^1.0.1"
 - "leaflet": "^1.0.2"
