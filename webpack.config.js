@@ -35,6 +35,14 @@ module.exports = {
         commonjs2: 'react',
         root: 'React'
       }
+    },
+    {
+      'google-maps': {
+        amd: 'google-maps',
+        commonjs: 'google-maps',
+        commonjs2: 'google-maps',
+        root: 'GoogleMapsLoader'
+      }
     }
   ],
   module: {
