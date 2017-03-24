@@ -10,7 +10,8 @@ export default class GoogleLayer extends GridLayer {
     asclientid: PropTypes.bool
   };
 
-
+  static contextTypes = GridLayer.contextTypes;
+  static childContextTypes = GridLayer.childContextTypes;
 
   componentWillMount() {
     super.componentWillMount();

@@ -148,6 +148,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	  maptype: _react.PropTypes.string,
 	  asclientid: _react.PropTypes.bool
 	};
+	GoogleLayer.contextTypes = _reactLeaflet.GridLayer.contextTypes;
+	GoogleLayer.childContextTypes = _reactLeaflet.GridLayer.childContextTypes;
 	exports.default = GoogleLayer;
 
 /***/ },
