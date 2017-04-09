@@ -34,13 +34,13 @@ L.GridLayer.GoogleMutant = L.GridLayer.extend({
     } else {
       GoogleMapsLoader.KEY = options.googlekey;
     }
-    
-    
+
+
     self._type = options.maptype || 'SATELLITE';
 
     GoogleMapsLoader.load(function (_google) {
       google = _google;
-      console.log('I just loaded google maps api');
+      //console.log('I just loaded google maps api');
       self._ready = true;
       //self._initMapObject();
       // self.
@@ -52,7 +52,7 @@ L.GridLayer.GoogleMutant = L.GridLayer.extend({
     });
 
 
-    
+
 
     // Couple data structures indexed by tile key
     this._tileCallbacks = {}; // Callbacks for promises for tiles that are expected
