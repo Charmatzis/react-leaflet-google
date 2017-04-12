@@ -205,6 +205,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	      GoogleMapsLoader.KEY = options.googlekey;
 	    }
 
+	    GoogleMapsLoader.LIBRARIES = options.libraries || [];
+
 	    self._type = options.maptype || 'SATELLITE';
 
 	    GoogleMapsLoader.load(function (_google) {
