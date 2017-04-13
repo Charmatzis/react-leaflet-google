@@ -218,6 +218,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	      self._initMutant();
 	      self._update();
 
+	      if (options.onAfterLoad) {
+	        options.onAfterLoad(google);
+	      }
+
 	      //this._ready = google.maps.Map !== undefined;
 	      //if (!this._ready) L.Google.asyncWait.push(this);
 	    });
