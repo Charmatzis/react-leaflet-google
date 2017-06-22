@@ -50,10 +50,11 @@
     "google-maps": "^3.2.1",
     "leaflet": "^1.0.2",
     "lodash.isequal": "^4.4.0",
-    "react": "^15.4.1",
-    "react-dom": "^15.4.1",
+    "react": "^15.5.0",
+    "react-dom": "^15.5.0",
     "react-leaflet": "^1.0.1",
     "webpack": "^1.13.0",
-    "webpack-dev-server": "^1.12.1"
+    "webpack-dev-server": "^1.12.1",
+    "prop-types": "^15.5.10"
   }
 }

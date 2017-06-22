@@ -1,4 +1,5 @@
-import React, {PropTypes}  from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import {GridLayer} from 'react-leaflet';
 import {Google} from './leaflet.google';
 
@@ -9,8 +10,6 @@ export default class GoogleLayer extends GridLayer {
     maptype: PropTypes.string,
     asclientid: PropTypes.bool
   };
-
-
 
   componentWillMount() {
     super.componentWillMount();
