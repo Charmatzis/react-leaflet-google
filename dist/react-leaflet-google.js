@@ -264,7 +264,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    map.off('zoomend', this._handleZoomAnim, this);
 	    map.off('resize', this._resize, this);
 
-	    map._controlCorners.bottomright.style.marginBottom = '0em';
+	    //map._controlCorners.bottomright.style.marginBottom = '0em';
 	  },
 
 	  getAttribution: function getAttribution() {
