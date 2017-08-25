@@ -52,7 +52,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
 
@@ -69,9 +69,9 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	exports.GoogleLayer = _Google2.default;
 
-/***/ },
+/***/ }),
 /* 1 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 
@@ -150,21 +150,21 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 	exports.default = GoogleLayer;
 
-/***/ },
+/***/ }),
 /* 2 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	module.exports = __WEBPACK_EXTERNAL_MODULE_2__;
 
-/***/ },
+/***/ }),
 /* 3 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	module.exports = __WEBPACK_EXTERNAL_MODULE_3__;
 
-/***/ },
+/***/ }),
 /* 4 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 
@@ -262,7 +262,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    map.off('zoomend', this._handleZoomAnim, this);
 	    map.off('resize', this._resize, this);
 
-	    map._controlCorners.bottomright.style.marginBottom = '0em';
+	    if (map._controlCorners) map._controlCorners.bottomright.style.marginBottom = '0em';
 	  },
 
 	  getAttribution: function getAttribution() {
@@ -584,9 +584,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	  return new L.GridLayer.GoogleMutant(options);
 	};
 
-/***/ },
+/***/ }),
 /* 5 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;(function(root, factory) {
 
@@ -809,7 +809,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	});
 
 
-/***/ }
+/***/ })
 /******/ ])
 });
 ;
