@@ -34,3 +34,7 @@ node_modules
 
 # Google key maps api
 key.txt
+
+#remove dist and iib
+dist
+lib
