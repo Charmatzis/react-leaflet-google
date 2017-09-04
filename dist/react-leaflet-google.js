@@ -52,7 +52,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
 
@@ -69,9 +69,9 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	exports.GoogleLayer = _Google2.default;
 
-/***/ },
+/***/ }),
 /* 1 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 
@@ -150,21 +150,21 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 	exports.default = GoogleLayer;
 
-/***/ },
+/***/ }),
 /* 2 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	module.exports = __WEBPACK_EXTERNAL_MODULE_2__;
 
-/***/ },
+/***/ }),
 /* 3 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	module.exports = __WEBPACK_EXTERNAL_MODULE_3__;
 
-/***/ },
+/***/ }),
 /* 4 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 
@@ -268,7 +268,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    map.off('zoomend', this._handleZoomAnim, this);
 	    map.off('resize', this._resize, this);
 
-	    map._controlCorners.bottomright.style.marginBottom = '0em';
+	    if (map._controlCorners) map._controlCorners.bottomright.style.marginBottom = '0em';
 	  },
 
 	  getAttribution: function getAttribution() {
@@ -590,13 +590,237 @@ return /******/ (function(modules) { // webpackBootstrap
 	  return new L.GridLayer.GoogleMutant(options);
 	};
 
-/***/ },
+/***/ }),
 /* 5 */
+<<<<<<< HEAD
 /***/ function(module, exports) {
+=======
+/***/ (function(module, exports, __webpack_require__) {
+
+	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;(function(root, factory) {
+
+		if (root === null) {
+			throw new Error('Google-maps package can be used only in browser');
+		}
+
+		if (true) {
+			!(__WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.call(exports, __webpack_require__, exports, module)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+		} else if (typeof exports === 'object') {
+			module.exports = factory();
+		} else {
+			root.GoogleMapsLoader = factory();
+		}
+
+	})(typeof window !== 'undefined' ? window : null, function() {
+
+
+		'use strict';
+
+
+		var googleVersion = '3.18';
+
+		var script = null;
+
+		var google = null;
+
+		var loading = false;
+
+		var callbacks = [];
+
+		var onLoadEvents = [];
+
+		var originalCreateLoaderMethod = null;
+
+
+		var GoogleMapsLoader = {};
+
+
+		GoogleMapsLoader.URL = 'https://maps.googleapis.com/maps/api/js';
+
+		GoogleMapsLoader.KEY = null;
+
+		GoogleMapsLoader.LIBRARIES = [];
+
+		GoogleMapsLoader.CLIENT = null;
+
+		GoogleMapsLoader.CHANNEL = null;
+
+		GoogleMapsLoader.LANGUAGE = null;
+
+		GoogleMapsLoader.REGION = null;
+
+		GoogleMapsLoader.VERSION = googleVersion;
+
+		GoogleMapsLoader.WINDOW_CALLBACK_NAME = '__google_maps_api_provider_initializator__';
+
+
+		GoogleMapsLoader._googleMockApiObject = {};
+
+
+		GoogleMapsLoader.load = function(fn) {
+			if (google === null) {
+				if (loading === true) {
+					if (fn) {
+						callbacks.push(fn);
+					}
+				} else {
+					loading = true;
+
+					window[GoogleMapsLoader.WINDOW_CALLBACK_NAME] = function() {
+						ready(fn);
+					};
+
+					GoogleMapsLoader.createLoader();
+				}
+			} else if (fn) {
+				fn(google);
+			}
+		};
+
+
+		GoogleMapsLoader.createLoader = function() {
+			script = document.createElement('script');
+			script.type = 'text/javascript';
+			script.src = GoogleMapsLoader.createUrl();
+
+			document.body.appendChild(script);
+		};
+
+
+		GoogleMapsLoader.isLoaded = function() {
+			return google !== null;
+		};
+
+
+		GoogleMapsLoader.createUrl = function() {
+			var url = GoogleMapsLoader.URL;
+
+			url += '?callback=' + GoogleMapsLoader.WINDOW_CALLBACK_NAME;
+
+			if (GoogleMapsLoader.KEY) {
+				url += '&key=' + GoogleMapsLoader.KEY;
+			}
+
+			if (GoogleMapsLoader.LIBRARIES.length > 0) {
+				url += '&libraries=' + GoogleMapsLoader.LIBRARIES.join(',');
+			}
+
+			if (GoogleMapsLoader.CLIENT) {
+				url += '&client=' + GoogleMapsLoader.CLIENT + '&v=' + GoogleMapsLoader.VERSION;
+			}
+
+			if (GoogleMapsLoader.CHANNEL) {
+				url += '&channel=' + GoogleMapsLoader.CHANNEL;
+			}
+
+			if (GoogleMapsLoader.LANGUAGE) {
+				url += '&language=' + GoogleMapsLoader.LANGUAGE;
+			}
+
+			if (GoogleMapsLoader.REGION) {
+				url += '&region=' + GoogleMapsLoader.REGION;
+			}
+
+			return url;
+		};
+
+
+		GoogleMapsLoader.release = function(fn) {
+			var release = function() {
+				GoogleMapsLoader.KEY = null;
+				GoogleMapsLoader.LIBRARIES = [];
+				GoogleMapsLoader.CLIENT = null;
+				GoogleMapsLoader.CHANNEL = null;
+				GoogleMapsLoader.LANGUAGE = null;
+				GoogleMapsLoader.REGION = null;
+				GoogleMapsLoader.VERSION = googleVersion;
+
+				google = null;
+				loading = false;
+				callbacks = [];
+				onLoadEvents = [];
+
+				if (typeof window.google !== 'undefined') {
+					delete window.google;
+				}
+
+				if (typeof window[GoogleMapsLoader.WINDOW_CALLBACK_NAME] !== 'undefined') {
+					delete window[GoogleMapsLoader.WINDOW_CALLBACK_NAME];
+				}
+
+				if (originalCreateLoaderMethod !== null) {
+					GoogleMapsLoader.createLoader = originalCreateLoaderMethod;
+					originalCreateLoaderMethod = null;
+				}
+
+				if (script !== null) {
+					script.parentElement.removeChild(script);
+					script = null;
+				}
+
+				if (fn) {
+					fn();
+				}
+			};
+
+			if (loading) {
+				GoogleMapsLoader.load(function() {
+					release();
+				});
+			} else {
+				release();
+			}
+		};
+
+
+		GoogleMapsLoader.onLoad = function(fn) {
+			onLoadEvents.push(fn);
+		};
+
+
+		GoogleMapsLoader.makeMock = function() {
+			originalCreateLoaderMethod = GoogleMapsLoader.createLoader;
+
+			GoogleMapsLoader.createLoader = function() {
+				window.google = GoogleMapsLoader._googleMockApiObject;
+				window[GoogleMapsLoader.WINDOW_CALLBACK_NAME]();
+			};
+		};
+
+
+		var ready = function(fn) {
+			var i;
+
+			loading = false;
+
+			if (google === null) {
+				google = window.google;
+			}
+
+			for (i = 0; i < onLoadEvents.length; i++) {
+				onLoadEvents[i](google);
+			}
+
+			if (fn) {
+				fn(google);
+			}
+
+			for (i = 0; i < callbacks.length; i++) {
+				callbacks[i](google);
+			}
+
+			callbacks = [];
+		};
+
+
+		return GoogleMapsLoader;
+
+	});
+>>>>>>> 1b44c23fecd0ee0e3aee232418e36f767cf0bc3a
 
 	module.exports = __WEBPACK_EXTERNAL_MODULE_5__;
 
-/***/ }
+/***/ })
 /******/ ])
 });
 ;
