@@ -205,6 +205,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	      GoogleMapsLoader.KEY = options.googlekey;
 	    }
 
+	    GoogleMapsLoader.LIBRARIES = options.libraries || [];
+
 	    self._type = options.maptype || 'SATELLITE';
 
 	    GoogleMapsLoader.load(function (_google) {
@@ -215,6 +217,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	      // self.
 	      self._initMutant();
 	      self._update();
+
+	      if (options.onAfterLoad) {
+	        options.onAfterLoad(google);
+	      }
 
 	      //this._ready = google.maps.Map !== undefined;
 	      //if (!this._ready) L.Google.asyncWait.push(this);
