@@ -1,6 +1,6 @@
 {
   "name": "react-leaflet-google",
-  "version": "2.1.0",
+  "version": "3.0.0",
   "description": "google layer as React compoment for Leaflet",
   "main": "dist/react-leaflet-google.js",
   "scripts": {
@@ -36,7 +36,7 @@
     "leaflet": "^1.0.3",
     "react-leaflet": "^1.0.1",
     "react": "^15.4.1",
-    "google-maps":"^3.2.1"
+    "google-maps": "^3.2.1"
   },
   "devDependencies": {
     "babel-cli": "^6.8.0",
