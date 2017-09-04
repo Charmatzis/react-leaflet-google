@@ -12,6 +12,8 @@ export default class GoogleLayer extends GridLayer {
 
 
 
+
+
   componentWillMount() {
     super.componentWillMount();
     const {map: _map, googlekey, maptype, asclientid, ...props} = this.props;

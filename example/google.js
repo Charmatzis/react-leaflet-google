@@ -2,7 +2,7 @@ import React from 'react';
 import { Map, TileLayer, LayersControl } from 'react-leaflet'
 import {GoogleLayer} from '../src'
 const { BaseLayer} = LayersControl;
-const key = 'Your Key goes here';
+const key = 'AIzaSyDEG4lyorD61vnJoAHG0FkQERZ-McElZyg';
 const terrain = 'TERRAIN';
 const road = 'ROADMAP';
 const satellite = 'SATELLITE';
