@@ -34,8 +34,9 @@ L.GridLayer.GoogleMutant = L.GridLayer.extend({
     } else {
       GoogleMapsLoader.KEY = options.googlekey;
     }
-    
-    
+
+    GoogleMapsLoader.LIBRARIES = options.libraries || [];
+
     self._type = options.maptype || 'SATELLITE';
 
     GoogleMapsLoader.load(function (_google) {
@@ -46,12 +47,16 @@ L.GridLayer.GoogleMutant = L.GridLayer.extend({
       self._initMutant();
       self._update();
 
+      if (options.onAfterLoad) {
+        options.onAfterLoad(google);
+      }
+
       //this._ready = google.maps.Map !== undefined;
       //if (!this._ready) L.Google.asyncWait.push(this);
     });
 
 
-    
+
 
     // Couple data structures indexed by tile key
     this._tileCallbacks = {}; // Callbacks for promises for tiles that are expected
