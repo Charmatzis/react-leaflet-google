@@ -35,7 +35,8 @@
   "peerDependencies": {
     "leaflet": "^1.0.2",
     "react-leaflet": "^1.0.1",
-    "react": "^15.4.1"
+    "react": "^15.4.1",
+    "google-maps": "^3.2.1" 
   },
   "devDependencies": {
     "babel-cli": "^6.8.0",
