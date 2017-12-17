@@ -1,13 +1,13 @@
 {
   "name": "react-leaflet-google",
-  "version": "3.2.1",
+  "version": "3.2.0",
   "description": "google layer as React compoment for Leaflet",
   "main": "dist/react-leaflet-google.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "clean:lib": "rm -Rf ./lib",
     "compile:lib": "babel src --out-dir lib",
-    "build:lib": "npm run clean:lib && npm run compile:lib",
+    "build:lib": "npm run compile:lib",
     "build:dist": "webpack src/index.js dist/react-leaflet-google.js & webpack -p src/index.js dist/react-leaflet-google.min.js",
     "build": "npm run build:lib && npm run build:dist",
     "example": "webpack-dev-server --config ./example/webpack.config.js",
