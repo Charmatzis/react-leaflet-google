@@ -8,9 +8,9 @@ Also it uses [google-maps](https://www.npmjs.com/package/google-maps), a wrapper
 ![Example](images/example.gif)
 
 # supported versions
-- "react-leaflet": "^1.0.1"
+- "react-leaflet": "^1.7.0"
 - "leaflet": "^1.0.3"
-- "react": "^15.5.0"
+- "react": "^15.5.0 || ^16.2.0"
 
 
 # Getting started
