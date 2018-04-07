@@ -21,7 +21,7 @@ L.GridLayer.GoogleMutant = L.GridLayer.extend({
     noWrap: false,
     // 🍂option type: String = 'roadmap'
     // Google's map type. Valid values are 'roadmap', 'satellite' or 'terrain'. 'hybrid' is not really supported.
-    type: 'SATELLITE',
+    type: 'satellite',
     maxNativeZoom: 21
   },
 
