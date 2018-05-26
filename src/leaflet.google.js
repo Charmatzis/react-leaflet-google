@@ -55,9 +55,6 @@ L.GridLayer.GoogleMutant = L.GridLayer.extend({
       //if (!this._ready) L.Google.asyncWait.push(this);
     });
 
-
-
-
     // Couple data structures indexed by tile key
     this._tileCallbacks = {}; // Callbacks for promises for tiles that are expected
     this._freshTiles = {}; // Tiles from the mutant which haven't been requested yet
@@ -70,8 +67,8 @@ L.GridLayer.GoogleMutant = L.GridLayer.extend({
     L.GridLayer.prototype.onAdd.call(this, map);
     this._initMutantContainer();
 
-    // this._GAPIPromise.then(function () {
-    if (this._ready) {
+    // Will be called after callback passed in initialize function
+    GoogleMapsLoader.load(function (google) {
       this._map = map;
 
       this._initMutant();
@@ -86,8 +83,7 @@ L.GridLayer.GoogleMutant = L.GridLayer.extend({
 
       this._reset();
       this._update();
-    }
-    //}.bind(this));
+    }.bind(this));
   },
 
   onRemove: function (map) {
