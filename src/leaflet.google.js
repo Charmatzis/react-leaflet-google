@@ -2,7 +2,7 @@
 // GridLayer like https://avinmathew.com/leaflet-and-google-maps/ , but using MutationObserver instead of jQuery
 var GoogleMapsLoader = require('google-maps');
 
-GoogleMapsLoader.VERSION = '3.18';
+GoogleMapsLoader.VERSION = '3.32';
 
 // 🍂class GridLayer.GoogleMutant
 // 🍂extends GridLayer

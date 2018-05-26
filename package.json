@@ -33,9 +33,11 @@
   },
   "homepage": "https://github.com/Charmatzis/react-leaflet-google#readme",
   "peerDependencies": {
-    "leaflet": "^1.0.3",
-    "react-leaflet": "^1.0.1",
-    "react": "^15.5.0",
+    "leaflet": "^1.3.0",
+    "prop-types": "^15.5.0",
+    "react": "^15.0.0 || ^16.0.0",
+    "react-dom": "^15.0.0 || ^16.0.0",
+    "react-leaflet": "^1.9.1",
     "google-maps": "^3.2.1"
   },
   "devDependencies": {
@@ -49,11 +51,11 @@
     "eslint": "^3.8.1",
     "eslint-plugin-react": "^6.4.1",
     "google-maps": "^3.2.1",
-    "leaflet": "^1.0.2",
+    "leaflet": "^1.3.0",
     "lodash.isequal": "^4.4.0",
-    "react": "^15.5.0",
-    "react-dom": "^15.5.0",
-    "react-leaflet": "^1.0.1",
+    "react": "^15.0.0 || ^16.0.0",
+    "react-dom": "^15.0.0 || ^16.0.0",
+    "react-leaflet": "^1.9.1",
     "webpack": "^1.13.0",
     "webpack-dev-server": "^1.12.1",
     "prop-types": "^15.5.10"

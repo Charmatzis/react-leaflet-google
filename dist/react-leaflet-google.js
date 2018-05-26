@@ -1364,7 +1364,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	// GridLayer like https://avinmathew.com/leaflet-and-google-maps/ , but using MutationObserver instead of jQuery
 	var GoogleMapsLoader = __webpack_require__(15);
 
-	GoogleMapsLoader.VERSION = '3.18';
+	GoogleMapsLoader.VERSION = '3.32';
 
 	// 🍂class GridLayer.GoogleMutant
 	// 🍂extends GridLayer
@@ -1421,8 +1421,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    this._tileCallbacks = {}; // Callbacks for promises for tiles that are expected
 	    this._freshTiles = {}; // Tiles from the mutant which haven't been requested yet
 
-	    this._imagesPerTile = self._type === 'hybrid' ? 2 : 1;
-	    this.createTile = self._type === 'hybrid' ? this._createMultiTile : this._createSingleTile;
+	    this._imagesPerTile = self._type === 'HYBRID' ? 2 : 1;
+	    this.createTile = self._type === 'HYBRID' ? this._createMultiTile : this._createSingleTile;
 	  },
 
 	  onAdd: function onAdd(map) {
