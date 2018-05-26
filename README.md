@@ -1,4 +1,4 @@
-# react-leaflet-google [![npm version](https://img.shields.io/badge/npm-5.4.0-blue.svg)](https://www.npmjs.com/package/react-leaflet-google)
+# react-leaflet-google [![npm version](https://img.shields.io/badge/npm-3.2.1-blue.svg)](https://www.npmjs.com/package/react-leaflet-google)
 GoogleMaps layer as React component for Leaflet build on top of [React-Leaflet](https://github.com/PaulLeCam/react-leaflet). 
 
 The google maps layer is using the plugin from [Leaflet.GridLayer.GoogleMutant](https://gitlab.com/IvanSanchez/Leaflet.GridLayer.GoogleMutant) 
