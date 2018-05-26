@@ -1,6 +1,6 @@
 {
   "name": "react-leaflet-google",
-  "version": "3.2.2",
+  "version": "3.3.0",
   "description": "google layer as React compoment for Leaflet",
   "main": "dist/react-leaflet-google.js",
   "scripts": {
