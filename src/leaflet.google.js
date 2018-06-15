@@ -37,6 +37,10 @@ L.GridLayer.GoogleMutant = L.GridLayer.extend({
 
     GoogleMapsLoader.LIBRARIES = options.libraries || [];
 
+    if (options.channel) {
+      GoogleMapsLoader.CHANNEL = options.channel;
+    }
+
     self._type = options.maptype || 'SATELLITE';
 
     GoogleMapsLoader.load(function (_google) {
