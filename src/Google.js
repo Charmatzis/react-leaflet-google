@@ -8,7 +8,8 @@ export default class GoogleLayer extends GridLayer {
   static propTypes = {
     googlekey: PropTypes.string.isRequired,
     maptype: PropTypes.string,
-    asclientid: PropTypes.bool
+    asclientid: PropTypes.bool,
+    channel: PropTypes.string
   };
 
 
@@ -20,7 +21,7 @@ export default class GoogleLayer extends GridLayer {
 
   componentWillMount() {
     super.componentWillMount();
-    const {map: _map, googlekey, maptype, asclientid, ...props} = this.props;
+    const {map: _map, googlekey, maptype, asclientid, channel, ...props} = this.props;
     this.leafletElement = new L.gridLayer.googleMutant(this.props);
   }
 
