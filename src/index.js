@@ -1,1 +1,1 @@
-export GoogleLayer from "./Google";
+export {GoogleLayer} from "./Google";
