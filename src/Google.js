@@ -4,8 +4,7 @@ import * as L from "leaflet";
 import { GridLayer, withLeaflet } from "react-leaflet";
 import "./leaflet.google";
 
-@withLeaflet
-export class GoogleLayer extends GridLayer {
+class GoogleLayer extends GridLayer {
   static propTypes = {
     googlekey: PropTypes.string.isRequired,
     maptype: PropTypes.string,
@@ -31,3 +30,5 @@ export class GoogleLayer extends GridLayer {
     }
   }
 }
+
+export default withLeaflet(GoogleLayer);

@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("react"), require("react-leaflet"), require("google-maps"));
+		module.exports = factory(require("react"), require("leaflet"), require("react-leaflet"), require("google-maps"));
 	else if(typeof define === 'function' && define.amd)
-		define(["react", "react-leaflet", "google-maps"], factory);
+		define(["react", "leaflet", "react-leaflet", "google-maps"], factory);
 	else if(typeof exports === 'object')
-		exports["ReactLeaflet"] = factory(require("react"), require("react-leaflet"), require("google-maps"));
+		exports["ReactLeaflet"] = factory(require("react"), require("leaflet"), require("react-leaflet"), require("google-maps"));
 	else
-		root["ReactLeaflet"] = factory(root["React"], root[undefined], root["GoogleMapsLoader"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_13__, __WEBPACK_EXTERNAL_MODULE_15__) {
+		root["ReactLeaflet"] = factory(root["React"], root["L"], root[undefined], root["GoogleMapsLoader"]);
+})(this, function(__WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_10__, __WEBPACK_EXTERNAL_MODULE_11__, __WEBPACK_EXTERNAL_MODULE_13__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -73,15 +73,13 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
 	var _react = __webpack_require__(2);
 
@@ -91,13 +89,17 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _propTypes2 = _interopRequireDefault(_propTypes);
 
-	var _reactLeaflet = __webpack_require__(13);
+	var _leaflet = __webpack_require__(10);
 
-	var _leaflet = __webpack_require__(14);
+	var L = _interopRequireWildcard(_leaflet);
+
+	var _reactLeaflet = __webpack_require__(11);
+
+	__webpack_require__(12);
+
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -115,25 +117,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 
 	  _createClass(GoogleLayer, [{
-	    key: 'componentWillMount',
-	    value: function componentWillMount() {
-	      _get(GoogleLayer.prototype.__proto__ || Object.getPrototypeOf(GoogleLayer.prototype), 'componentWillMount', this).call(this);
-
-	      var _props = this.props,
-	          _map = _props.map,
-	          googlekey = _props.googlekey,
-	          maptype = _props.maptype,
-	          asclientid = _props.asclientid,
-	          props = _objectWithoutProperties(_props, ['map', 'googlekey', 'maptype', 'asclientid']);
-
-	      this.leafletElement = new L.gridLayer.googleMutant(this.props);
+	    key: "createLeafletElement",
+	    value: function createLeafletElement(props) {
+	      this.leafletElement = new L.gridLayer.googleMutant(props);
+	      return this.leafletElement;
 	    }
 	  }, {
-	    key: 'componentDidUpdate',
-	    value: function componentDidUpdate(prevProps) {
-	      var _props2 = this.props,
-	          opacity = _props2.opacity,
-	          zIndex = _props2.zIndex;
+	    key: "updateLeafletElement",
+	    value: function updateLeafletElement(prevProps, nextProps) {
+	      var opacity = nextProps.opacity,
+	          zIndex = nextProps.zIndex;
 
 	      if (opacity !== prevProps.opacity) {
 	        this.leafletElement.setOpacity(opacity);
@@ -150,11 +143,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	GoogleLayer.propTypes = {
 	  googlekey: _propTypes2.default.string.isRequired,
 	  maptype: _propTypes2.default.string,
-	  asclientid: _propTypes2.default.bool
+	  asclientid: _propTypes2.default.bool,
+	  channel: _propTypes2.default.string
 	};
 	GoogleLayer.contextTypes = _reactLeaflet.GridLayer.contextTypes;
 	GoogleLayer.childContextTypes = _reactLeaflet.GridLayer.childContextTypes;
-	exports.default = GoogleLayer;
+	exports.default = (0, _reactLeaflet.withLeaflet)(GoogleLayer);
 
 /***/ }),
 /* 2 */
@@ -192,7 +186,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	} else {
 	  // By explicitly using `prop-types` you are opting into new production behavior.
 	  // http://fb.me/prop-types-in-prod
-	  module.exports = __webpack_require__(12)();
+	  module.exports = __webpack_require__(9)();
 	}
 
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
@@ -400,13 +394,31 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 
-	var emptyFunction = __webpack_require__(6);
-	var invariant = __webpack_require__(7);
-	var warning = __webpack_require__(8);
-	var assign = __webpack_require__(9);
+	var assign = __webpack_require__(6);
 
-	var ReactPropTypesSecret = __webpack_require__(10);
-	var checkPropTypes = __webpack_require__(11);
+	var ReactPropTypesSecret = __webpack_require__(7);
+	var checkPropTypes = __webpack_require__(8);
+
+	var printWarning = function() {};
+
+	if (process.env.NODE_ENV !== 'production') {
+	  printWarning = function(text) {
+	    var message = 'Warning: ' + text;
+	    if (typeof console !== 'undefined') {
+	      console.error(message);
+	    }
+	    try {
+	      // --- Welcome to debugging React ---
+	      // This error was thrown as a convenience so that you can use this stack
+	      // to find the callsite that caused this warning to fire.
+	      throw new Error(message);
+	    } catch (x) {}
+	  };
+	}
+
+	function emptyFunctionThatReturnsNull() {
+	  return null;
+	}
 
 	module.exports = function(isValidElement, throwOnDirectAccess) {
 	  /* global Symbol */
@@ -550,12 +562,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	      if (secret !== ReactPropTypesSecret) {
 	        if (throwOnDirectAccess) {
 	          // New behavior only for users of `prop-types` package
-	          invariant(
-	            false,
+	          var err = new Error(
 	            'Calling PropTypes validators directly is not supported by the `prop-types` package. ' +
 	            'Use `PropTypes.checkPropTypes()` to call them. ' +
 	            'Read more at http://fb.me/use-check-prop-types'
 	          );
+	          err.name = 'Invariant Violation';
+	          throw err;
 	        } else if (process.env.NODE_ENV !== 'production' && typeof console !== 'undefined') {
 	          // Old behavior for people using React.PropTypes
 	          var cacheKey = componentName + ':' + propName;
@@ -564,15 +577,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	            // Avoid spamming the console because they are often not actionable except for lib authors
 	            manualPropTypeWarningCount < 3
 	          ) {
-	            warning(
-	              false,
+	            printWarning(
 	              'You are manually calling a React.PropTypes validation ' +
-	              'function for the `%s` prop on `%s`. This is deprecated ' +
+	              'function for the `' + propFullName + '` prop on `' + componentName  + '`. This is deprecated ' +
 	              'and will throw in the standalone `prop-types` package. ' +
 	              'You may be seeing this warning due to a third-party PropTypes ' +
-	              'library. See https://fb.me/react-warning-dont-call-proptypes ' + 'for details.',
-	              propFullName,
-	              componentName
+	              'library. See https://fb.me/react-warning-dont-call-proptypes ' + 'for details.'
 	            );
 	            manualPropTypeCallCache[cacheKey] = true;
 	            manualPropTypeWarningCount++;
@@ -616,7 +626,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 
 	  function createAnyTypeChecker() {
-	    return createChainableTypeChecker(emptyFunction.thatReturnsNull);
+	    return createChainableTypeChecker(emptyFunctionThatReturnsNull);
 	  }
 
 	  function createArrayOfTypeChecker(typeChecker) {
@@ -666,8 +676,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	  function createEnumTypeChecker(expectedValues) {
 	    if (!Array.isArray(expectedValues)) {
-	      process.env.NODE_ENV !== 'production' ? warning(false, 'Invalid argument supplied to oneOf, expected an instance of array.') : void 0;
-	      return emptyFunction.thatReturnsNull;
+	      process.env.NODE_ENV !== 'production' ? printWarning('Invalid argument supplied to oneOf, expected an instance of array.') : void 0;
+	      return emptyFunctionThatReturnsNull;
 	    }
 
 	    function validate(props, propName, componentName, location, propFullName) {
@@ -709,21 +719,18 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	  function createUnionTypeChecker(arrayOfTypeCheckers) {
 	    if (!Array.isArray(arrayOfTypeCheckers)) {
-	      process.env.NODE_ENV !== 'production' ? warning(false, 'Invalid argument supplied to oneOfType, expected an instance of array.') : void 0;
-	      return emptyFunction.thatReturnsNull;
+	      process.env.NODE_ENV !== 'production' ? printWarning('Invalid argument supplied to oneOfType, expected an instance of array.') : void 0;
+	      return emptyFunctionThatReturnsNull;
 	    }
 
 	    for (var i = 0; i < arrayOfTypeCheckers.length; i++) {
 	      var checker = arrayOfTypeCheckers[i];
 	      if (typeof checker !== 'function') {
-	        warning(
-	          false,
+	        printWarning(
 	          'Invalid argument supplied to oneOfType. Expected an array of check functions, but ' +
-	          'received %s at index %s.',
-	          getPostfixForTypeWarning(checker),
-	          i
+	          'received ' + getPostfixForTypeWarning(checker) + ' at index ' + i + '.'
 	        );
-	        return emptyFunction.thatReturnsNull;
+	        return emptyFunctionThatReturnsNull;
 	      }
 	    }
 
@@ -940,174 +947,6 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 6 */
 /***/ (function(module, exports) {
 
-	"use strict";
-
-	/**
-	 * Copyright (c) 2013-present, Facebook, Inc.
-	 *
-	 * This source code is licensed under the MIT license found in the
-	 * LICENSE file in the root directory of this source tree.
-	 *
-	 * 
-	 */
-
-	function makeEmptyFunction(arg) {
-	  return function () {
-	    return arg;
-	  };
-	}
-
-	/**
-	 * This function accepts and discards inputs; it has no side effects. This is
-	 * primarily useful idiomatically for overridable function endpoints which
-	 * always need to be callable, since JS lacks a null-call idiom ala Cocoa.
-	 */
-	var emptyFunction = function emptyFunction() {};
-
-	emptyFunction.thatReturns = makeEmptyFunction;
-	emptyFunction.thatReturnsFalse = makeEmptyFunction(false);
-	emptyFunction.thatReturnsTrue = makeEmptyFunction(true);
-	emptyFunction.thatReturnsNull = makeEmptyFunction(null);
-	emptyFunction.thatReturnsThis = function () {
-	  return this;
-	};
-	emptyFunction.thatReturnsArgument = function (arg) {
-	  return arg;
-	};
-
-	module.exports = emptyFunction;
-
-/***/ }),
-/* 7 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function(process) {/**
-	 * Copyright (c) 2013-present, Facebook, Inc.
-	 *
-	 * This source code is licensed under the MIT license found in the
-	 * LICENSE file in the root directory of this source tree.
-	 *
-	 */
-
-	'use strict';
-
-	/**
-	 * Use invariant() to assert state which your program assumes to be true.
-	 *
-	 * Provide sprintf-style format (only %s is supported) and arguments
-	 * to provide information about what broke and what you were
-	 * expecting.
-	 *
-	 * The invariant message will be stripped in production, but the invariant
-	 * will remain to ensure logic does not differ in production.
-	 */
-
-	var validateFormat = function validateFormat(format) {};
-
-	if (process.env.NODE_ENV !== 'production') {
-	  validateFormat = function validateFormat(format) {
-	    if (format === undefined) {
-	      throw new Error('invariant requires an error message argument');
-	    }
-	  };
-	}
-
-	function invariant(condition, format, a, b, c, d, e, f) {
-	  validateFormat(format);
-
-	  if (!condition) {
-	    var error;
-	    if (format === undefined) {
-	      error = new Error('Minified exception occurred; use the non-minified dev environment ' + 'for the full error message and additional helpful warnings.');
-	    } else {
-	      var args = [a, b, c, d, e, f];
-	      var argIndex = 0;
-	      error = new Error(format.replace(/%s/g, function () {
-	        return args[argIndex++];
-	      }));
-	      error.name = 'Invariant Violation';
-	    }
-
-	    error.framesToPop = 1; // we don't care about invariant's own frame
-	    throw error;
-	  }
-	}
-
-	module.exports = invariant;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
-
-/***/ }),
-/* 8 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function(process) {/**
-	 * Copyright (c) 2014-present, Facebook, Inc.
-	 *
-	 * This source code is licensed under the MIT license found in the
-	 * LICENSE file in the root directory of this source tree.
-	 *
-	 */
-
-	'use strict';
-
-	var emptyFunction = __webpack_require__(6);
-
-	/**
-	 * Similar to invariant but only logs a warning if the condition is not met.
-	 * This can be used to log issues in development environments in critical
-	 * paths. Removing the logging code for production environments will keep the
-	 * same logic and follow the same code paths.
-	 */
-
-	var warning = emptyFunction;
-
-	if (process.env.NODE_ENV !== 'production') {
-	  var printWarning = function printWarning(format) {
-	    for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-	      args[_key - 1] = arguments[_key];
-	    }
-
-	    var argIndex = 0;
-	    var message = 'Warning: ' + format.replace(/%s/g, function () {
-	      return args[argIndex++];
-	    });
-	    if (typeof console !== 'undefined') {
-	      console.error(message);
-	    }
-	    try {
-	      // --- Welcome to debugging React ---
-	      // This error was thrown as a convenience so that you can use this stack
-	      // to find the callsite that caused this warning to fire.
-	      throw new Error(message);
-	    } catch (x) {}
-	  };
-
-	  warning = function warning(condition, format) {
-	    if (format === undefined) {
-	      throw new Error('`warning(condition, format, ...args)` requires a warning ' + 'message argument');
-	    }
-
-	    if (format.indexOf('Failed Composite propType: ') === 0) {
-	      return; // Ignore CompositeComponent proptype check.
-	    }
-
-	    if (!condition) {
-	      for (var _len2 = arguments.length, args = Array(_len2 > 2 ? _len2 - 2 : 0), _key2 = 2; _key2 < _len2; _key2++) {
-	        args[_key2 - 2] = arguments[_key2];
-	      }
-
-	      printWarning.apply(undefined, [format].concat(args));
-	    }
-	  };
-	}
-
-	module.exports = warning;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
-
-/***/ }),
-/* 9 */
-/***/ (function(module, exports) {
-
 	/*
 	object-assign
 	(c) Sindre Sorhus
@@ -1201,7 +1040,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ }),
-/* 10 */
+/* 7 */
 /***/ (function(module, exports) {
 
 	/**
@@ -1219,7 +1058,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ }),
-/* 11 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -1231,11 +1070,24 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 
+	var printWarning = function() {};
+
 	if (process.env.NODE_ENV !== 'production') {
-	  var invariant = __webpack_require__(7);
-	  var warning = __webpack_require__(8);
-	  var ReactPropTypesSecret = __webpack_require__(10);
+	  var ReactPropTypesSecret = __webpack_require__(7);
 	  var loggedTypeFailures = {};
+
+	  printWarning = function(text) {
+	    var message = 'Warning: ' + text;
+	    if (typeof console !== 'undefined') {
+	      console.error(message);
+	    }
+	    try {
+	      // --- Welcome to debugging React ---
+	      // This error was thrown as a convenience so that you can use this stack
+	      // to find the callsite that caused this warning to fire.
+	      throw new Error(message);
+	    } catch (x) {}
+	  };
 	}
 
 	/**
@@ -1260,12 +1112,29 @@ return /******/ (function(modules) { // webpackBootstrap
 	        try {
 	          // This is intentionally an invariant that gets caught. It's the same
 	          // behavior as without this statement except with a better message.
-	          invariant(typeof typeSpecs[typeSpecName] === 'function', '%s: %s type `%s` is invalid; it must be a function, usually from ' + 'the `prop-types` package, but received `%s`.', componentName || 'React class', location, typeSpecName, typeof typeSpecs[typeSpecName]);
+	          if (typeof typeSpecs[typeSpecName] !== 'function') {
+	            var err = Error(
+	              (componentName || 'React class') + ': ' + location + ' type `' + typeSpecName + '` is invalid; ' +
+	              'it must be a function, usually from the `prop-types` package, but received `' + typeof typeSpecs[typeSpecName] + '`.'
+	            );
+	            err.name = 'Invariant Violation';
+	            throw err;
+	          }
 	          error = typeSpecs[typeSpecName](values, typeSpecName, componentName, location, null, ReactPropTypesSecret);
 	        } catch (ex) {
 	          error = ex;
 	        }
-	        warning(!error || error instanceof Error, '%s: type specification of %s `%s` is invalid; the type checker ' + 'function must return `null` or an `Error` but returned a %s. ' + 'You may have forgotten to pass an argument to the type checker ' + 'creator (arrayOf, instanceOf, objectOf, oneOf, oneOfType, and ' + 'shape all require an argument).', componentName || 'React class', location, typeSpecName, typeof error);
+	        if (error && !(error instanceof Error)) {
+	          printWarning(
+	            (componentName || 'React class') + ': type specification of ' +
+	            location + ' `' + typeSpecName + '` is invalid; the type checker ' +
+	            'function must return `null` or an `Error` but returned a ' + typeof error + '. ' +
+	            'You may have forgotten to pass an argument to the type checker ' +
+	            'creator (arrayOf, instanceOf, objectOf, oneOf, oneOfType, and ' +
+	            'shape all require an argument).'
+	          )
+
+	        }
 	        if (error instanceof Error && !(error.message in loggedTypeFailures)) {
 	          // Only monitor this failure once because there tends to be a lot of the
 	          // same error.
@@ -1273,7 +1142,9 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	          var stack = getStack ? getStack() : '';
 
-	          warning(false, 'Failed %s type: %s%s', location, error.message, stack != null ? stack : '');
+	          printWarning(
+	            'Failed ' + location + ' type: ' + error.message + (stack != null ? stack : '')
+	          );
 	        }
 	      }
 	    }
@@ -1285,7 +1156,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ }),
-/* 12 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
@@ -1297,9 +1168,9 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 
-	var emptyFunction = __webpack_require__(6);
-	var invariant = __webpack_require__(7);
-	var ReactPropTypesSecret = __webpack_require__(10);
+	var ReactPropTypesSecret = __webpack_require__(7);
+
+	function emptyFunction() {}
 
 	module.exports = function() {
 	  function shim(props, propName, componentName, location, propFullName, secret) {
@@ -1307,12 +1178,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	      // It is still safe when called from React.
 	      return;
 	    }
-	    invariant(
-	      false,
+	    var err = new Error(
 	      'Calling PropTypes validators directly is not supported by the `prop-types` package. ' +
 	      'Use PropTypes.checkPropTypes() to call them. ' +
 	      'Read more at http://fb.me/use-check-prop-types'
 	    );
+	    err.name = 'Invariant Violation';
+	    throw err;
 	  };
 	  shim.isRequired = shim;
 	  function getShim() {
@@ -1349,25 +1221,43 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ }),
-/* 13 */
+/* 10 */
 /***/ (function(module, exports) {
 
-	module.exports = __WEBPACK_EXTERNAL_MODULE_13__;
+	module.exports = __WEBPACK_EXTERNAL_MODULE_10__;
 
 /***/ }),
-/* 14 */
+/* 11 */
+/***/ (function(module, exports) {
+
+	module.exports = __WEBPACK_EXTERNAL_MODULE_11__;
+
+/***/ }),
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
+
+	var _googleMaps = __webpack_require__(13);
+
+	var _googleMaps2 = _interopRequireDefault(_googleMaps);
+
+	var _leaflet = __webpack_require__(10);
+
+	var L = _interopRequireWildcard(_leaflet);
+
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	// Based on https://github.com/shramov/leaflet-plugins
 	// GridLayer like https://avinmathew.com/leaflet-and-google-maps/ , but using MutationObserver instead of jQuery
-	var GoogleMapsLoader = __webpack_require__(15);
+	_googleMaps2.default.VERSION = "3.32";
 
-	GoogleMapsLoader.VERSION = '3.32';
+	var google = void 0;
 
-	// 🍂class GridLayer.GoogleMutant
-	// 🍂extends GridLayer
+	// class GridLayer.GoogleMutant
+	// extends GridLayer
 	L.GridLayer.GoogleMutant = L.GridLayer.extend({
 	  includes: L.Evented,
 
@@ -1375,16 +1265,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	    minZoom: 0,
 	    maxZoom: 18,
 	    tileSize: 256,
-	    subdomains: 'abc',
-	    errorTileUrl: '',
-	    attribution: '', // The mutant container will add its own attribution anyways.
+	    subdomains: "abc",
+	    errorTileUrl: "",
+	    attribution: "", // The mutant container will add its own attribution anyways.
 	    opacity: 1,
 	    continuousWorld: false,
 	    noWrap: false,
 	    // 🍂option type: String = 'roadmap'
 	    // Google's map type. Valid values are 'roadmap', 'satellite' or 'terrain'. 'hybrid' is not really supported.
-	    type: 'satellite',
-	    maxNativeZoom: 21
+	    type: "HYBRID",
+	    maxNativeZoom: 18
 	  },
 
 	  initialize: function initialize(options) {
@@ -1392,19 +1282,23 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var self = this;
 
 	    if (options.asclientid) {
-	      GoogleMapsLoader.CLIENT = options.googlekey;
+	      _googleMaps2.default.CLIENT = options.googlekey;
 	    } else {
-	      GoogleMapsLoader.KEY = options.googlekey;
+	      _googleMaps2.default.KEY = options.googlekey;
 	    }
 
-	    GoogleMapsLoader.LIBRARIES = options.libraries || [];
+	    _googleMaps2.default.LIBRARIES = options.libraries || [];
 
-	    self._type = options.maptype || 'SATELLITE';
+	    if (options.channel) {
+	      _googleMaps2.default.CHANNEL = options.channel;
+	    }
 
-	    GoogleMapsLoader.load(function (_google) {
+	    self._type = options.maptype || "SATELLITE";
+
+	    _googleMaps2.default.load(function (_google) {
 	      google = _google;
 	      self._ready = true;
-	      //self._initMapObject();
+	      // self._initMapObject();
 	      // self.
 	      self._initMutant();
 	      self._update();
@@ -1413,76 +1307,70 @@ return /******/ (function(modules) { // webpackBootstrap
 	        options.onAfterLoad(google);
 	      }
 
-	      //this._ready = google.maps.Map !== undefined;
-	      //if (!this._ready) L.Google.asyncWait.push(this);
+	      // this._ready = google.maps.Map !== undefined;
+	      // if (!this._ready) L.Google.asyncWait.push(this);
 	    });
 
 	    // Couple data structures indexed by tile key
 	    this._tileCallbacks = {}; // Callbacks for promises for tiles that are expected
 	    this._freshTiles = {}; // Tiles from the mutant which haven't been requested yet
 
-	    this._imagesPerTile = self._type === 'HYBRID' ? 2 : 1;
-	    this.createTile = self._type === 'HYBRID' ? this._createMultiTile : this._createSingleTile;
+	    this._imagesPerTile = self._type === "HYBRID" ? 2 : 1;
+	    this.createTile = self._type === "HYBRID" ? this._createMultiTile : this._createSingleTile;
 	  },
-
 	  onAdd: function onAdd(map) {
 	    L.GridLayer.prototype.onAdd.call(this, map);
 	    this._initMutantContainer();
 
 	    // Will be called after callback passed in initialize function
-	    GoogleMapsLoader.load(function (google) {
+	    _googleMaps2.default.load(function (google) {
 	      this._map = map;
 
 	      this._initMutant();
 
-	      map.on('viewreset', this._reset, this);
-	      map.on('move', this._update, this);
-	      map.on('zoomend', this._handleZoomAnim, this);
-	      map.on('resize', this._resize, this);
+	      map.on("viewreset", this._reset, this);
+	      map.on("move", this._update, this);
+	      map.on("zoomend", this._handleZoomAnim, this);
+	      map.on("resize", this._resize, this);
 
-	      //20px instead of 1em to avoid a slight overlap with google's attribution
-	      map._controlCorners.bottomright.style.marginBottom = '20px';
+	      // 20px instead of 1em to avoid a slight overlap with google's attribution
+	      map._controlCorners.bottomright.style.marginBottom = "20px";
 
 	      this._reset();
 	      this._update();
 	    }.bind(this));
 	  },
-
 	  onRemove: function onRemove(map) {
 	    L.GridLayer.prototype.onRemove.call(this, map);
 	    map._container.removeChild(this._mutantContainer);
 	    this._mutantContainer = undefined;
 
-	    map.off('viewreset', this._reset, this);
-	    map.off('move', this._update, this);
-	    map.off('zoomend', this._handleZoomAnim, this);
-	    map.off('resize', this._resize, this);
+	    map.off("viewreset", this._reset, this);
+	    map.off("move", this._update, this);
+	    map.off("zoomend", this._handleZoomAnim, this);
+	    map.off("resize", this._resize, this);
 
-	    if (map._controlCorners) map._controlCorners.bottomright.style.marginBottom = '0em';
+	    if (map._controlCorners) map._controlCorners.bottomright.style.marginBottom = "0em";
 	  },
-
 	  getAttribution: function getAttribution() {
 	    return this.options.attribution;
 	  },
-
 	  setOpacity: function setOpacity(opacity) {
 	    this.options.opacity = opacity;
 	    if (opacity < 1) {
 	      L.DomUtil.setOpacity(this._mutantContainer, opacity);
 	    }
 	  },
-
 	  setElementSize: function setElementSize(e, size) {
-	    e.style.width = size.x + 'px';
-	    e.style.height = size.y + 'px';
+	    e.style.width = size.x + "px";
+	    e.style.height = size.y + "px";
 	  },
-
 	  _initMutantContainer: function _initMutantContainer() {
 	    if (!this._mutantContainer) {
-	      this._mutantContainer = L.DomUtil.create('div', 'leaflet-google-mutant leaflet-top leaflet-left');
-	      this._mutantContainer.id = '_MutantContainer_' + L.Util.stamp(this._mutantContainer);
+	      this._mutantContainer = L.DomUtil.create("div", "leaflet-google-mutant leaflet-top leaflet-left");
+	      this._mutantContainer.id = "_MutantContainer_" + L.Util.stamp(this._mutantContainer);
 	      // 			this._mutantContainer.style.zIndex = 'auto';
-	      this._mutantContainer.style.pointerEvents = 'none';
+	      this._mutantContainer.style.pointerEvents = "none";
 
 	      this._map.getContainer().appendChild(this._mutantContainer);
 	    }
@@ -1492,7 +1380,6 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    this._attachObserver(this._mutantContainer);
 	  },
-
 	  _initMutant: function _initMutant() {
 	    if (!this._ready || !this._mutantContainer) return;
 	    this._mutantCenter = new google.maps.LatLng(0, 0);
@@ -1509,17 +1396,18 @@ return /******/ (function(modules) { // webpackBootstrap
 	      scrollwheel: false,
 	      streetViewControl: false,
 	      styles: this.options.styles || {},
-	      backgroundColor: 'transparent'
+	      backgroundColor: "transparent"
 	    });
 
 	    this._mutant = map;
 
 	    // 🍂event spawned
 	    // Fired when the mutant has been created.
-	    this.fire('spawned', {
+	    this.fire("spawned", {
 	      mapObject: map
 	    });
 	  },
+
 
 	  _attachObserver: function _attachObserver(node) {
 	    // 		console.log('Gonna observe', node);
@@ -1542,7 +1430,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (node instanceof HTMLImageElement) {
 	          this._onMutatedImage(node);
 	        } else if (node instanceof HTMLElement) {
-	          Array.prototype.forEach.call(node.querySelectorAll('img'), this._onMutatedImage.bind(this));
+	          Array.prototype.forEach.call(node.querySelectorAll("img"), this._onMutatedImage.bind(this));
 	        }
 	      }
 	    }
@@ -1565,9 +1453,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    // 			console.log('caught mutated image: ', imgNode.src);
 	    // 		}
 
-	    var coords;
+	    var coords = void 0;
 	    var match = imgNode.src.match(this._roadRegexp);
-	    var sublayer, parent;
+	    var sublayer = void 0;
+	    var parent = void 0;
 
 	    if (match) {
 	      coords = {
@@ -1594,9 +1483,9 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    if (coords) {
 	      var key = this._tileCoordsToKey(coords);
-	      imgNode.style.position = 'absolute';
+	      imgNode.style.position = "absolute";
 	      if (this._imagesPerTile > 1) {
-	        key += '/' + sublayer;
+	        key += "/" + sublayer;
 	      }
 	      if (key in this._tileCallbacks && this._tileCallbacks[key]) {
 	        // console.log('Fullfilling callback ', key);
@@ -1624,7 +1513,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        // Remove the image, but don't store it anywhere.
 	        // Image needs to be replaced instead of removed, as the container
 	        // seems to be reused.
-	        imgNode.parentNode.replaceChild(L.DomUtil.create('img'), imgNode);
+	        imgNode.parentNode.replaceChild(L.DomUtil.create("img"), imgNode);
 	      }
 	    }
 	  },
@@ -1642,36 +1531,35 @@ return /******/ (function(modules) { // webpackBootstrap
 	      L.Util.requestAnimFrame(done);
 	      // 			console.log('Got ', key, ' from _freshTiles');
 	      return tile;
-	    } else {
-	      var tileContainer = L.DomUtil.create('div');
-	      this._tileCallbacks[key] = this._tileCallbacks[key] || [];
-	      this._tileCallbacks[key].push(function (c /*, k*/) {
-	        return function (imgNode) {
-	          var parent = imgNode.parentNode;
-	          if (parent) {
-	            parent.removeChild(imgNode);
-	            parent.removeChild = L.Util.falseFn;
-	            // 						imgNode.parentNode.replaceChild(L.DomUtil.create('img'), imgNode);
-	          }
-	          c.appendChild(imgNode);
-	          done();
-	          // 					console.log('Sent ', k, ' to _tileCallbacks');
-	        }.bind(this);
-	      }.bind(this)(tileContainer /*, key*/));
-
-	      return tileContainer;
 	    }
+	    var tileContainer = L.DomUtil.create("div");
+	    this._tileCallbacks[key] = this._tileCallbacks[key] || [];
+	    this._tileCallbacks[key].push(function (c /* , k*/) {
+	      return function (imgNode) {
+	        var parent = imgNode.parentNode;
+	        if (parent) {
+	          parent.removeChild(imgNode);
+	          parent.removeChild = L.Util.falseFn;
+	          // 						imgNode.parentNode.replaceChild(L.DomUtil.create('img'), imgNode);
+	        }
+	        c.appendChild(imgNode);
+	        done();
+	        // 					console.log('Sent ', k, ' to _tileCallbacks');
+	      };
+	    }(tileContainer /* , key*/));
+
+	    return tileContainer;
 	  },
 
 	  // This will be used as this.createTile for 'hybrid'
 	  _createMultiTile: function createTile(coords, done) {
 	    var key = this._tileCoordsToKey(coords);
 
-	    var tileContainer = L.DomUtil.create('div');
+	    var tileContainer = L.DomUtil.create("div");
 	    tileContainer.dataset.pending = this._imagesPerTile;
 
 	    for (var i = 0; i < this._imagesPerTile; i++) {
-	      var key2 = key + '/' + i;
+	      var key2 = key + "/" + i;
 	      if (key2 in this._freshTiles) {
 	        tileContainer.appendChild(this._freshTiles[key2].pop());
 	        if (!this._freshTiles[key2].length) {
@@ -1681,7 +1569,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        // 				console.log('Got ', key2, ' from _freshTiles');
 	      } else {
 	        this._tileCallbacks[key2] = this._tileCallbacks[key2] || [];
-	        this._tileCallbacks[key2].push(function (c /*, k2*/) {
+	        this._tileCallbacks[key2].push(function (c /* , k2*/) {
 	          return function (imgNode) {
 	            var parent = imgNode.parentNode;
 	            if (parent) {
@@ -1695,8 +1583,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	              done();
 	            }
 	            // 						console.log('Sent ', k2, ' to _tileCallbacks, still ', c.dataset.pending, ' images to go');
-	          }.bind(this);
-	        }.bind(this)(tileContainer /*, key2*/));
+	          };
+	        }(tileContainer /* , key2*/));
 	      }
 	    }
 
@@ -1707,19 +1595,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	  },
 
 	  _checkZoomLevels: function _checkZoomLevels() {
-	    //setting the zoom level on the Google map may result in a different zoom level than the one requested
-	    //(it won't go beyond the level for which they have data).
+	    // setting the zoom level on the Google map may result in a different zoom level than the one requested
+	    // (it won't go beyond the level for which they have data).
 	    // verify and make sure the zoom levels on both Leaflet and Google maps are consistent
 	    if (this._map.getZoom() !== undefined && this._mutant.getZoom() !== this._map.getZoom()) {
-	      //zoom levels are out of sync. Set the leaflet zoom level to match the google one
+	      // zoom levels are out of sync. Set the leaflet zoom level to match the google one
 	      this._map.setZoom(this._mutant.getZoom());
 	    }
 	  },
-
 	  _reset: function _reset() {
 	    this._initContainer();
 	  },
-
 	  _update: function _update() {
 	    L.GridLayer.prototype._update.call(this);
 	    if (!this._mutant) return;
@@ -1733,15 +1619,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	      this._mutant.setZoom(Math.round(this._map.getZoom()));
 	    }
 	  },
-
 	  _resize: function _resize() {
 	    var size = this._map.getSize();
 	    if (this._mutantContainer.style.width === size.x && this._mutantContainer.style.height === size.y) return;
 	    this.setElementSize(this._mutantContainer, size);
 	    if (!this._mutant) return;
-	    google.maps.event.trigger(this._mutant, 'resize');
+	    google.maps.event.trigger(this._mutant, "resize");
 	  },
-
 	  _handleZoomAnim: function _handleZoomAnim() {
 	    var center = this._map.getCenter();
 	    var _center = new google.maps.LatLng(center.lat, center.lng);
@@ -1750,6 +1634,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    this._mutant.setZoom(Math.round(this._map.getZoom()));
 	  },
 
+
 	  // Agressively prune _freshtiles when a tile with the same key is removed,
 	  // this prevents a problem where Leaflet keeps a loaded tile longer than
 	  // GMaps, so that GMaps makes two requests but Leaflet only consumes one,
@@ -1757,17 +1642,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	  _removeTile: function _removeTile(key) {
 	    if (this._imagesPerTile > 1) {
 	      for (var i = 0; i < this._imagesPerTile; i++) {
-	        var key2 = key + '/' + i;
+	        var key2 = key + "/" + i;
 	        if (key2 in this._freshTiles) {
 	          delete this._freshTiles[key2];
 	        }
 	        // 				console.log('Pruned spurious hybrid _freshTiles');
 	      }
-	    } else {
-	      if (key in this._freshTiles) {
-	        delete this._freshTiles[key];
-	        // 				console.log('Pruned spurious _freshTiles', key);
-	      }
+	    } else if (key in this._freshTiles) {
+	      delete this._freshTiles[key];
+	      // 				console.log('Pruned spurious _freshTiles', key);
 	    }
 
 	    return L.GridLayer.prototype._removeTile.call(this, key);
@@ -1781,10 +1664,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 /***/ }),
-/* 15 */
+/* 13 */
 /***/ (function(module, exports) {
 
-	module.exports = __WEBPACK_EXTERNAL_MODULE_15__;
+	module.exports = __WEBPACK_EXTERNAL_MODULE_13__;
 
 /***/ })
 /******/ ])
