@@ -59,15 +59,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.GoogleLayer = undefined;
 
-	var _Google = __webpack_require__(1);
+	var _GoogleLayer = __webpack_require__(1);
 
-	var _Google2 = _interopRequireDefault(_Google);
+	Object.defineProperty(exports, "GoogleLayer", {
+	  enumerable: true,
+	  get: function get() {
+	    return _interopRequireDefault(_GoogleLayer).default;
+	  }
+	});
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	exports.GoogleLayer = _Google2.default;
 
 /***/ }),
 /* 1 */
