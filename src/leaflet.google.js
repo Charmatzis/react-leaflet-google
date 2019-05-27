@@ -3,8 +3,6 @@
 import GoogleMapsLoader from "google-maps";
 import * as L from "leaflet";
 
-GoogleMapsLoader.VERSION = "3.32";
-
 let google;
 
 // class GridLayer.GoogleMutant
@@ -29,8 +27,11 @@ L.GridLayer.GoogleMutant = L.GridLayer.extend({
   },
   
   initialize(options) {
+
     L.GridLayer.prototype.initialize.call(this, options);
     let self = this;
+    
+    GoogleMapsLoader.VERSION = options.version || "3.32";
     
     if ( options.asclientid ) {
       GoogleMapsLoader.CLIENT = options.googlekey;
