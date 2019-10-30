@@ -14,7 +14,7 @@ L.GridLayer.GoogleMutant = L.GridLayer.extend({
   
   options: {
     minZoom: 0,
-    maxZoom: 18,
+    maxZoom: 21,
     tileSize: 256,
     subdomains: "abc",
     errorTileUrl: "",
@@ -25,7 +25,7 @@ L.GridLayer.GoogleMutant = L.GridLayer.extend({
     // 🍂option type: String = 'roadmap'
     // Google's map type. Valid values are 'roadmap', 'satellite' or 'terrain'. 'hybrid' is not really supported.
     type: "HYBRID",
-    maxNativeZoom: 18,
+    maxNativeZoom: 21,
   },
   
   initialize(options) {
